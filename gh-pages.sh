@@ -3,7 +3,7 @@
 set -e
 
 mkdir -p web
-cp -R res web.cpp Makefile index.html web
+cp -R res web.cpp Makefile index.html sw.js manifest.json web
 cd web
 make web
 

@@ -38,6 +38,7 @@ loop:
 	emcc -c loop.c -o loop.o -s ASYNCIFY=1
 	emcc loop.o -o loop.html -s ASYNCIFY=1
 
+.PHONY: web
 web:
 	emcc web.cpp -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -s USE_SDL_TTF=2 -s USE_SDL_MIXER=2 -s SDL2_MIXER_FORMATS='["ogg"]' -s USE_OGG=1 --use-preload-plugins  --preload-file res -o web.js
 
@@ -50,5 +51,5 @@ format:
 	find . -regextype posix-extended -regex '.*\.(c|cpp)'  -exec clang-format -style=Google -i "{}" +;
 
 clean:
-	rm -rf *.wasm *.js *.o *.data web
+	rm -rf *.wasm sdl_.js loop.js hello.js  *.o *.data web
 	rm -f sdl_*.html loop.html hello.html
