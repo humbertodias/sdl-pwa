@@ -2,11 +2,16 @@
 
 set -e
 
-make compile
+mkdir -p web
+cp -R res web.cpp Makefile web 
+cd web
+make web
+
+GIT_REPOSITORY=`git config --get remote.origin.url`
 
 git init
 git add -A
 git commit -m 'deploy'
-git push -f `git config --get remote.origin.url` `git rev-parse HEAD`:gh-pages
+git push -f $GIT_REPOSITORY `git rev-parse HEAD`:gh-pages
 
 cd -
