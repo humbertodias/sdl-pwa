@@ -9,9 +9,9 @@
     "start_url": "index.html",
     "icons": [
         {
-            "src": "./res/logo.png",
+            "src": "./res/icon-512.png",
             "type": "image/png",
-            "sizes": "32x28"
+            "sizes": "512x512"
         }
     ]
 }
