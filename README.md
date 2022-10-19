@@ -1,6 +1,6 @@
-# SDL with emscripten
+# SDL-PWA
 
-Examples
+SDL compiled with emscripten and packaged as PWA
 
 # How to Run
 
