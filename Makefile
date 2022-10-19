@@ -28,5 +28,8 @@ format:
 
 clean:
 	rm -rf web.js *.wasm *.o *.data web
+
+clean-all:
+	$(MAKE) clean
 	$(MAKE) -C examples clean
 	$(MAKE) -C games clean
