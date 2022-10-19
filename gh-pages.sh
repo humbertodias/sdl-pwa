@@ -5,7 +5,7 @@ set -e
 mkdir -p web
 cp -R res web.cpp Makefile index.html sw.js manifest.json web
 cd web
-make web
+make clean web
 
 GIT_REPOSITORY=`git config --get remote.origin.url`
 
