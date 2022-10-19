@@ -5,7 +5,7 @@ SDL compiled with emscripten and packaged as PWA
 # How to Run
 
 ## Web
-[Play](https://humbertodias.github.io/sdl2-web)
+[Play](https://humbertodias.github.io/sdl-pwa)
 ## Desktop
 
 Compile/Run
