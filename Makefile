@@ -39,7 +39,7 @@ loop:
 	emcc loop.o -o loop.html -s ASYNCIFY=1
 
 web:
-	emcc web.cpp -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -s USE_SDL_TTF=2 --preload-file res -o web.js
+	emcc web.cpp -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -s USE_SDL_TTF=2 -s USE_SDL_MIXER=2 -s SDL2_MIXER_FORMATS='["ogg"]' -s USE_OGG=1 --use-preload-plugins  --preload-file res -o web.js
 
 compile:	hello	sdl1	sdl2	sdl2-cross	loop	web
 
