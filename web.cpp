@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 #include <emscripten.h>
 
 #include <iostream>
@@ -28,7 +28,7 @@ struct context {
   int font_size = 32;
   TTF_Font *font;
   SDL_Color font_color = {255, 255, 255, 255};
-  Mix_Music* music;
+  Mix_Music *music;
 };
 int loadImage(std::string filename, context *ctx) {
   ctx->images.push_back(IMG_LoadTexture(ctx->renderer, filename.c_str()));
@@ -77,26 +77,26 @@ void end_render(context *ctx) {
   SDL_RenderPresent(ctx->renderer);
 }
 
-void load_and_play_music(float volume, std::string file, Mix_Music* music)
-{
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == 0) {
-        int flags = MIX_INIT_OGG;
-        int initted = Mix_Init(flags);
-        if ((initted & flags) != flags) {
-            printf("Mix_Init: Failed to init required ogg support!\n");
-            printf("Mix_Init: %s\n", Mix_GetError());
-            // We can still continue without audio. :^(
-        } else {
-            Mix_VolumeMusic(volume);
-            music = Mix_LoadMUS(file.c_str());
-            if (!Mix_PlayingMusic()) {
-                Mix_PlayMusic(music, -1);
-            }
-        }
+void load_and_play_music(float volume, std::string file, Mix_Music *music) {
+  if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == 0) {
+    int flags = MIX_INIT_OGG;
+    int initted = Mix_Init(flags);
+    if ((initted & flags) != flags) {
+      printf("Mix_Init: Failed to init required ogg support!\n");
+      printf("Mix_Init: %s\n", Mix_GetError());
+      // We can still continue without audio. :^(
     } else {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error initializing SDL_mixer: %s\n", Mix_GetError());
-        // No need to exit, we just play without sound.
+      Mix_VolumeMusic(volume);
+      music = Mix_LoadMUS(file.c_str());
+      if (!Mix_PlayingMusic()) {
+        Mix_PlayMusic(music, -1);
+      }
     }
+  } else {
+    SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error initializing SDL_mixer: %s\n",
+                 Mix_GetError());
+    // No need to exit, we just play without sound.
+  }
 }
 
 void init(context *ctx) {
@@ -108,12 +108,11 @@ void init(context *ctx) {
                         SDL_TEXTUREACCESS_TARGET, ctx->width, ctx->height);
 
   ctx->logo = loadImage("res/logo.png", ctx);
-  
+
   TTF_Init();
   ctx->font = TTF_OpenFont("res/peepo.ttf", ctx->font_size);
 
   load_and_play_music(-1, "res/music.ogg", ctx->music);
-
 }
 
 void quit(context *ctx) {
