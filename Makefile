@@ -50,4 +50,5 @@ format:
 	find . -regextype posix-extended -regex '.*\.(c|cpp)'  -exec clang-format -style=Google -i "{}" +;
 
 clean:
-	rm -f *.wasm *.html *.js *.o *.data
+	rm -f *.wasm *.js *.o *.data
+	rm -f sdl_*.html loop.html hello.html
